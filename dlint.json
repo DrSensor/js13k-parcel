@@ -1,0 +1,14 @@
+{
+  "rules": {
+    "tags": ["recommended"],
+    "include": [],
+    "exclude": [
+      "no-explicit-any",
+      "ban-ts-comment"
+    ]
+  },
+  "files": {
+    "include": ["*.{tsx,ts,js,jsx}"],
+    "exclude": ["node_modules"]
+  }
+}
