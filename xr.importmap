@@ -1,0 +1,8 @@
+{
+    "imports": {
+        "playcanvas": "https://js13kgames.com/webxr-src/2021/playcanvas.js",
+        "aframe": "https://js13kgames.com/webxr-src/2021/aframe.js",
+        "babylonjs": "https://js13kgames.com/webxr-src/2021/babylon.js",
+        "three": "https://js13kgames.com/webxr-src/2021/three.js"
+    }
+}

@@ -1,0 +1,56 @@
+{
+  "dekstop": "dist/desktop/index.html",
+  "mobile": "dist/mobile/index.html",
+  "server": "server/public/server.js",
+  "xr": "dist/xr/index.html",
+  "targets": {
+    "desktop": {
+      "context": "browser",
+      "engines": { "browsers": ["Firefox 92", "Safari 15"] },
+      "sourceMap": false
+    },
+    "mobile": {
+      "context": "browser",
+      "engines": { "browsers": ["iOS 14"] },
+      "sourceMap": false
+    },
+    "xr": {
+      "context": "browser",
+      "engines": { "browsers": ["Firefox 92", "Safari 15", "iOS 14"] },
+      "includeNodeModules": {
+        "playcanvas": false,
+        "aframe": false,
+        "babylonjs": false,
+        "three": false
+      },
+      "sourcemap": false
+    },
+    "server": {
+      "context": "node",
+      "outputFormat": "commonjs",
+      "engines": { "node": "8.*" },
+      "isLibrary": true,
+      "includeNodeModules": {
+        "socket.io": false
+      },
+      "sourceMap": false
+    }
+  },
+  "alias": {
+    "socket.io": { "global": "io" },
+    "playcanvas": { "global": "pc" },
+    "babylonjs": { "global": "BABYLON" },
+    "three": { "global": "THREE" }
+  },
+  "devDependencies": {
+    "@parcel/optimizer-esbuild": "next",
+    "@parcel/optimizer-svgo": "next",
+    "@parcel/reporter-build-metrics": "next",
+    "@parcel/reporter-bundle-buddy": "next",
+    "@parcel/reporter-sourcemap-visualiser": "next",
+    "@parcel/transformer-glsl": "next",
+    "@parcel/transformer-image": "next",
+    "@parcel/transformer-worklet": "next",
+    "parcel": "next"
+  }
+}

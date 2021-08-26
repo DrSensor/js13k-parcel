@@ -1,0 +1,37 @@
+{
+    "extends": "@parcel/config-default",
+    "transformers": {
+        "*.{jpeg,jpg,png,webp,tiff,heic,heif,avif,raw}": [
+            "@parcel/transformer-image",
+            "..."
+        ],
+        "*.glsl": [
+            "@parcel/transformer-glsl",
+            "..."
+        ],
+        "*.worklet.{js,ts,wasm}": [
+            "...",
+            "@parcel/transformer-worklet"
+        ]
+    },
+    "optimizer": {
+        "*.svg": [
+            "...",
+            "@parcel/optimizer-svgo"
+        ],
+        "blob-url:*": [
+            "...",
+            "@parcel/transformer-blob-url"
+        ],
+        "*.{js,jsx,ts,tsx}": [
+            "@parcel/optimizer-esbuild",
+            "..."
+        ]
+    },
+    "reporters": [
+        "...",
+        "@parcel/reporter-build-metrics",
+        "@parcel/reporter-bundle-buddy",
+        "@parcel/reporter-sourcemap-visualiser"
+    ]
+}
