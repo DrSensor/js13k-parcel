@@ -1,4 +1,6 @@
 {
+  "name": "js13k",
+  "version": "13",
   "dekstop": "dist/desktop/index.html",
   "mobile": "dist/mobile/index.html",
   "server": "server/public/server.js",
@@ -42,6 +44,7 @@
     "babylonjs": { "global": "BABYLON" },
     "three": { "global": "THREE" }
   },
+  "dependencies": {},
   "devDependencies": {
     "@parcel/optimizer-esbuild": "next",
     "@parcel/optimizer-svgo": "next",
