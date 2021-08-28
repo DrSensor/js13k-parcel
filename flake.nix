@@ -40,11 +40,11 @@
 
       # extra pkgs
       overlay = final: prev: with prev.lib; mapAttrs
-        (
-          name: value@{ sha256, ... }: with final; let
+        (name: value@{ sha256, bin ? name, ... }: with final; let
             target = with systems.parse; tripleFromSystem (mkSystemFromString system);
           in
-        stdenv.mkDerivation {
+        optionalAttrs (value ? github || value ? url)
+          (stdenv.mkDerivation {
           inherit name;
           # since it only available in .zip
           src = fetchzip {
@@ -57,21 +57,13 @@
               else url;
           };
           installPhase = ''
-            install -m755 -D ${name} $out/bin/${name}
+              install -m755 -D ${bin} $out/bin/${name}
           '';
-        }
+          })
         )
-        {
+        (recursiveUpdate (import ./overlay-integrity.nix) {
           dlint.github = "denoland/deno_lint";
           dprint.github = "dprint/dprint";
-
-          # use `nix run -- nixpkgs#nix-prefetch fetchzip --url -E $URL_FOR_DOWNLOAD`
-          # dprint.sha256.x86_64-linux = "";
-          # dlint.sha256.x86_64-linux = "";
-          # dprint.sha256.x86_64-darwin = "";
-          # dlint.sha256.x86_64-darwin = "";
-          # dprint.sha256.x86_64-windows = "";
-          # dlint.sha256.x86_64-windows = "";
-        };
+        });
     };
 }
