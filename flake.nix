@@ -7,7 +7,7 @@
 
       # Helpers to instantiate nixpkgs for supported system types.
       give = with nixpkgs.lib; let forAllSystems = f: genAttrs givenSystems (system: f system); in
-        f: forAllSystems (system:
+      f: forAllSystems (system:
         let
           pkgs = import nixpkgs { inherit system; overlays = [ self.overlay ]; };
           node = with pkgs; callPackage ./package-lock.nix { };
@@ -32,33 +32,34 @@
             node2nix --composition package-lock.nix \
                      --strip-optional-dependencies \
                      --development
+            [ -d ".git" ] && git add package-lock.nix node-packages.nix node-env.nix
 
             echo -e "\nPlease run$(tput bold) nix develop $(tput sgr0)again."
             exit
-        '';
+          '';
       });
 
       # extra pkgs
       overlay = final: prev: with prev.lib; mapAttrs
         (name: value@{ sha256, bin ? name, ... }: with final; let
-            target = with systems.parse; tripleFromSystem (mkSystemFromString system);
-          in
+          target = with systems.parse; tripleFromSystem (mkSystemFromString system);
+        in
         optionalAttrs (value ? github || value ? url)
           (stdenv.mkDerivation {
-          inherit name;
-          # since it only available in .zip
-          src = fetchzip {
-            sha256 =
-              if sha256 ? ${system} then sha256.${system}
-              else if sha256 ? ${target} then sha256.${target}
-              else sha256;
-            url = with value;
-              if value ? github then "https://github.com/${github}/releases/latest/download/${name}-${target}.zip"
-              else url;
-          };
-          installPhase = ''
+            inherit name;
+            # since it only available in .zip
+            src = fetchzip {
+              sha256 =
+                if sha256 ? ${system} then sha256.${system}
+                else if sha256 ? ${target} then sha256.${target}
+                else sha256;
+              url = with value;
+                if value ? github then "https://github.com/${github}/releases/latest/download/${name}-${target}.zip"
+                else url;
+            };
+            installPhase = ''
               install -m755 -D ${bin} $out/bin/${name}
-          '';
+            '';
           })
         )
         (recursiveUpdate (import ./overlay-integrity.nix) {
