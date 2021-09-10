@@ -1,3 +1,14 @@
+# Nix symlinks
+node_modules
+
+# Parcel output
+.parcel-cache
+parcel-metrics.json
+sourcemap-info.json
+
+# Yarn Berry
+.yarn/
+
 # Logs
 logs
 *.log

@@ -14,18 +14,14 @@
             "@parcel/transformer-worklet"
         ]
     },
-    "optimizer": {
+    "optimizers": {
         "*.svg": [
             "...",
             "@parcel/optimizer-svgo"
         ],
         "blob-url:*": [
             "...",
-            "@parcel/transformer-blob-url"
-        ],
-        "*.{js,jsx,ts,tsx}": [
-            "@parcel/optimizer-esbuild",
-            "..."
+            "@parcel/optimizer-blob-url"
         ]
     },
     "reporters": [

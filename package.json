@@ -1,10 +1,13 @@
 {
   "name": "js13k",
-  "version": "13",
+  "version": "1.3.21",
   "dekstop": "dist/desktop/index.html",
   "mobile": "dist/mobile/index.html",
   "server": "server/public/server.js",
   "xr": "dist/xr/index.html",
+  "scripts": {
+    "build": "parcel build index.html --target desktop"
+  },
   "targets": {
     "desktop": {
       "context": "browser",
@@ -25,7 +28,7 @@
         "babylonjs": false,
         "three": false
       },
-      "sourcemap": false
+      "sourceMap": false
     },
     "server": {
       "context": "node",
@@ -46,7 +49,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@parcel/optimizer-esbuild": "next",
+    "@parcel/config-default": "next",
     "@parcel/optimizer-svgo": "next",
     "@parcel/reporter-build-metrics": "next",
     "@parcel/reporter-bundle-buddy": "next",
@@ -54,6 +57,8 @@
     "@parcel/transformer-glsl": "next",
     "@parcel/transformer-image": "next",
     "@parcel/transformer-worklet": "next",
-    "parcel": "next"
+    "parcel": "next",
+    "sharp": "^0.28.3",
+    "terser": "^5.2.0"
   }
 }
