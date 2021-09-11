@@ -41,27 +41,27 @@
 
       # extra pkgs
       overlay = final: prev: with prev.lib; mapAttrs
-        (name: value@{ sha256, bin ? name, ... }: with final; let
+        (pname: value@{ version ? "latest", bin ? pname, ... }: with final; let
           target = with systems.parse; tripleFromSystem (mkSystemFromString system);
+          integrity' = mapAttrs
+            (name: package:
+              if package ? ${system} then package.${system} else
+              if package ? ${target} then package.${target}
+              else package)
+            integrity;
         in
-        optionalAttrs (value ? github || value ? url)
-          (stdenv.mkDerivation {
-            inherit name;
-            # since it only available in .zip
-            src = fetchzip {
-              sha256 =
-                if sha256 ? ${system} then sha256.${system}
-                else if sha256 ? ${target} then sha256.${target}
-                else sha256;
-              url = with value;
-                if value ? github then "https://github.com/${github}/releases/latest/download/${name}-${target}.zip"
-                else url;
-            };
-            installPhase = ''
-              install -m755 -D ${bin} $out/bin/${name}
-            '';
-          })
-        )
+        stdenv.mkDerivation {
+          inherit pname version;
+          # since it only available in .zip
+          src = fetchzip (integrity'.${pname} // {
+            url = with value;
+              if value ? github then "https://github.com/${github}/releases/${version}/download/${pname}-${target}.zip"
+              else url;
+          });
+          installPhase = ''
+            install -m755 -D ${bin} $out/bin/${pname}
+          '';
+        })
         (recursiveUpdate (import ./integrity.nix) {
           dlint.github = "denoland/deno_lint";
           dprint.github = "dprint/dprint";
