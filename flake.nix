@@ -62,7 +62,7 @@
             '';
           })
         )
-        (recursiveUpdate (import ./overlay-integrity.nix) {
+        (recursiveUpdate (import ./integrity.nix) {
           dlint.github = "denoland/deno_lint";
           dprint.github = "dprint/dprint";
         });
