@@ -5,6 +5,9 @@
       # dlint and dprint only available on this systems. (github.com releases archieve)
       givenSystems = [ "x86_64-linux" "x86_64-darwin" "x86_64-windows" ];
 
+      # collection of hash value for external/patched packages
+      integrity = import ./integrity.nix;
+
       # Helpers to instantiate nixpkgs for supported system types.
       give = with nixpkgs.lib; let forAllSystems = f: genAttrs givenSystems (system: f system); in
       f: forAllSystems (system:
@@ -62,7 +65,7 @@
             install -m755 -D ${bin} $out/bin/${pname}
           '';
         })
-        (filterAttrs (name: value: value ? github || value ? url) (recursiveUpdate (import ./integrity.nix) {
+        (filterAttrs (name: value: value ? github || value ? url) (recursiveUpdate integrity {
           dlint.github = "denoland/deno_lint";
           dprint.github = "dprint/dprint";
         }));
