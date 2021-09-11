@@ -62,9 +62,9 @@
             install -m755 -D ${bin} $out/bin/${pname}
           '';
         })
-        (recursiveUpdate (import ./integrity.nix) {
+        (filterAttrs (name: value: value ? github || value ? url) (recursiveUpdate (import ./integrity.nix) {
           dlint.github = "denoland/deno_lint";
           dprint.github = "dprint/dprint";
-        });
+        }));
     };
 }
