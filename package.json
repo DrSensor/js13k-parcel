@@ -1,6 +1,6 @@
 {
   "name": "js13k",
-  "version": "13",
+  "version": "2021.08.13",
   "dekstop": "dist/desktop/index.html",
   "mobile": "dist/mobile/index.html",
   "server": "server/public/server.js",
@@ -25,7 +25,7 @@
         "babylonjs": false,
         "three": false
       },
-      "sourcemap": false
+      "sourceMap": false
     },
     "server": {
       "context": "node",
