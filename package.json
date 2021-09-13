@@ -8,18 +8,24 @@
   "targets": {
     "desktop": {
       "context": "browser",
+      "outputFormat": "esmodule",
+      "engines": { "browsers": ["Firefox 94"] },
       "isLibrary": true,
       "optimize": true,
       "sourceMap": false
     },
     "mobile": {
       "context": "browser",
+      "outputFormat": "esmodule",
+      "engines": { "browsers": ["Android 93", "iOS 14"] },
       "isLibrary": true,
       "optimize": true,
       "sourceMap": false
     },
     "xr": {
       "context": "browser",
+      "outputFormat": "esmodule",
+      "engines": { "browsers": ["Chrome 96", "iOS 14"] },
       "isLibrary": true,
       "optimize": true,
       "includeNodeModules": {
