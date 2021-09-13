@@ -4,6 +4,7 @@
     "jsxImportSource": "jsx13k",
     "baseUrl": ".",
     "paths": {
+      "/*": ["./*"],
       "~/*": ["./*"]
     },
     "lib": ["ESNext", "DOM"],
