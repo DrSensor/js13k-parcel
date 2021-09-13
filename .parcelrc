@@ -3,7 +3,7 @@
     "transformers": {
         "*.{jpeg,jpg,png,webp,tiff,heic,heif,avif,raw}": [
             "@parcel/transformer-image",
-            "..."
+            "..." // comment, build, then uncomment this line when transforming to .avif
         ],
         "*.glsl": [
             "@parcel/transformer-glsl",
@@ -15,6 +15,10 @@
         ]
     },
     "optimizers": {
+        "*.{jpeg,jpg,png}": [
+            "...",
+            "@parcel/optimizer-image"
+        ],
         "*.svg": [
             "...",
             "@parcel/optimizer-svgo"
@@ -31,7 +35,7 @@
     "reporters": [
         "...",
         "@parcel/reporter-build-metrics",
-        "@parcel/reporter-bundle-buddy",
+        // "@parcel/reporter-bundle-buddy", // cuz the report is in $target folder
         "@parcel/reporter-sourcemap-visualiser"
     ]
 }

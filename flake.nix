@@ -26,6 +26,8 @@
           npm); in
         mkShell {
           packages = with pkgs; [ nodejs dlint dprint ] ++ packageManagers
+            ++ [ zopfli oxipng pngcrush pngquant optipng pngnq advancecomp ]
+            ++ [ mozjpeg guetzli lepton jpeg-archive jpegoptim jpegrescan ]
             # some native packages related to package.json
             ++ [ vips ] # npm:sharp which used by npm:@parcel/transformer-image
             ++ [ pkg-config ]; # to make dynamic linking of libs from nixpkgs working
@@ -70,6 +72,7 @@
 
       # extra pkgs
       overlay = final: prev: with prev.lib; {
+        nodejs = prev.nodejs-16_x;
         lib = prev.lib // rec {
           nodePackages-prefix = "node_";
           nodePackages-getName = drv: removePrefix nodePackages-prefix (getName drv);

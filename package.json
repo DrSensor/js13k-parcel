@@ -46,7 +46,10 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@parcel/config-default": "next",
+    "@parcel/optimizer-blob-url": "next",
     "@parcel/optimizer-esbuild": "next",
+    "@parcel/optimizer-image": "latest",
     "@parcel/optimizer-svgo": "next",
     "@parcel/reporter-build-metrics": "next",
     "@parcel/reporter-bundle-buddy": "next",
