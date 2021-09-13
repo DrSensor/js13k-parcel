@@ -1,3 +1,6 @@
+# Optimized files
+*.min.*
+
 # Nix symlinks
 node_modules
 

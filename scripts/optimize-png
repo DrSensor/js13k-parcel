@@ -1,0 +1,20 @@
+#!/bin/env sh
+
+#example> optimize-png assets/*.png
+
+function size {
+    ls -la $1 | awk '{ print $5}'
+}
+function hsize {
+    echo $(ls -lah $1 | awk '{ print $5}') \($(size $1)\)
+}
+
+# TODO: parallel for loop
+for png in $@; do
+    out=$(dirname $png)/$(basename $png .png).min.png
+    echo -e $(hsize $png) '\t' $png
+    pngquant $png -o $out --quality 1 --speed 1 --posterize 1 --nofs --strip --force
+    echo -e $(hsize $out) '\t' $out \($((100 - $(size $out) * 100 / $(size $png)))\%\) quantize
+    advpng -q -i 100 -4 -z $out
+    echo -e $(hsize $out) '\t' $out \($((100 - $(size $out) * 100 / $(size $png)))\%\) quantize+compress
+done
