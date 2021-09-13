@@ -1,0 +1,7 @@
+{
+  "name": "nojsx",
+  "version": "2021.08.13",
+  "exports": {
+    "./jsx-runtime": "./jsx-runtime.ts"
+  }
+}
