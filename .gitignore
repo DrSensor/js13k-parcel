@@ -1,3 +1,9 @@
+# Nix symlinks
+node_modules
+
+# Yarn Berry
+.yarn/
+
 # Logs
 logs
 *.log
