@@ -8,17 +8,20 @@
   "targets": {
     "desktop": {
       "context": "browser",
-      "engines": { "browsers": ["Firefox 92", "Safari 15"] },
+      "isLibrary": true,
+      "optimize": true,
       "sourceMap": false
     },
     "mobile": {
       "context": "browser",
-      "engines": { "browsers": ["iOS 14"] },
+      "isLibrary": true,
+      "optimize": true,
       "sourceMap": false
     },
     "xr": {
       "context": "browser",
-      "engines": { "browsers": ["Firefox 92", "Safari 15", "iOS 14"] },
+      "isLibrary": true,
+      "optimize": true,
       "includeNodeModules": {
         "playcanvas": false,
         "aframe": false,
@@ -32,9 +35,7 @@
       "outputFormat": "commonjs",
       "engines": { "node": "8.*" },
       "isLibrary": true,
-      "includeNodeModules": {
-        "socket.io": false
-      },
+      "optimize": true,
       "sourceMap": false
     }
   },
