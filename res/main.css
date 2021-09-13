@@ -1,0 +1,16 @@
+html,
+body {
+    height: 100%;
+    margin: auto;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+body {
+    background: url(/assets/banner.png) no-repeat black;
+    background-position: center 25%;
+    color: white;
+}
