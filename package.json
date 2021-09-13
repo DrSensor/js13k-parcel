@@ -1,10 +1,6 @@
 {
   "name": "js13k",
   "version": "2021.08.13",
-  "dekstop": "dist/desktop/index.html",
-  "mobile": "dist/mobile/index.html",
-  "server": "server/public/server.js",
-  "xr": "dist/xr/index.html",
   "targets": {
     "desktop": {
       "context": "browser",
